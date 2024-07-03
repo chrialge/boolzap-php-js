@@ -3,12 +3,15 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
-
+            addContact: false,
+            modalAddAccount: false,
             url: 'api.php',
             //valore del input search
             searchContact: "",
 
             contactJson: [],
+
+
 
 
             //costante per il valore di time per decidere quando stoppare l'intervallo
@@ -151,7 +154,7 @@ createApp({
             console.log(this.searchContact);
             // se la lunghezza della parola maggiore di 1
             if (this.searchContact.length > 1) {
-                // scrollo gli oggetti che assomiglia al valore dell'input
+                // itero tra i contatti  che assomiglia al valore dell'input
                 for (const key in this.contacts) {
                     // costante per prendere i nomi dei contatti
                     const nameContant = this.contacts[key].name.toLowerCase();
@@ -160,11 +163,18 @@ createApp({
                     const visible = nameContant.includes(
                         this.searchContact.toLowerCase()
                     );
+                    if (!nameContant.includes(
+                        this.searchContact.toLowerCase())) {
+                        this.addContact = true;
+                    }
+
+
 
                     //cambiare il valore di visible in base al valore della costante precedente
                     this.contacts[key].visible = visible;
                 }
             } else {
+                this.addContact = false;
                 //altrimenti se la lunghezza della parola e di uno trasforma tutti i valori visible in true
                 for (const key in this.contacts) {
                     this.contacts[key].visible = true;
@@ -250,16 +260,17 @@ createApp({
 
     },
     mounted() {
+        console.log(this.modalCreate)
 
         axios.get(this.url)
             .then((result) => {
                 console.log(result);
                 this.contacts = result.data
-                console.log(this.contacts[this.contactNumber].avatar)
+
             }).catch((err) => {
-                console.log(err.message);
+                console.error(err.message);
             })
 
-        console.log(this.contacts)
+
     },
 }).mount("#container");

@@ -28,22 +28,37 @@ body {
 
 
 
-body::-webkit-scrollbar {
+body::-webkit-scrollbar,
+.contacts::-webkit-scrollbar,
+#site-main::-webkit-scrollbar {
     width: var(--sb-size)
 }
 
-body::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track,
+.contacts::-webkit-scrollbar-track,
+#site-main::-webkit-scrollbar-track {
     background: var(--sb-track-color);
     border-radius: 3px;
 }
 
-body::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb,
+.contacts::-webkit-scrollbar-thumb,
+#site-main::-webkit-scrollbar-thumb {
     background: var(--sb-thumb-color);
     border-radius: 3px;
 
 }
 
 @supports not selector(::-webkit-scrollbar) {
+    .contacts {
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+
+    }
+
+    #site-main {
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    }
+
     body {
         scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
     }
@@ -161,7 +176,7 @@ body::-webkit-scrollbar-thumb {
 
         & .text-search {
             width: 100%;
-            height: 40px;
+
             gap: 1rem;
             background-color: var(--boolzap-lighter);
 
@@ -179,8 +194,11 @@ body::-webkit-scrollbar-thumb {
             }
 
             & input[type="search"] {
+                padding-left: 5px;
                 width: 100%;
+                background-color: var(--boolzap-lighter);
                 line-height: 40px;
+                font-size: 19px;
                 border: none;
 
                 &:focus-visible {
@@ -198,6 +216,7 @@ body::-webkit-scrollbar-thumb {
 .contacts {
     overflow-y: auto;
     height: calc(100% - 206px);
+    scroll-behavior: smooth;
 
     & .contact {
         width: 100%;
@@ -205,9 +224,13 @@ body::-webkit-scrollbar-thumb {
         gap: 1rem;
         border-bottom: 1px solid var(--boolzap-light);
 
+
         & .contact-image>img {
             width: 50px;
             border-radius: 50%;
+            filter: grayscale(1);
+            transition: 0.2s linear;
+
         }
 
         & .contact-info>span {
@@ -217,12 +240,20 @@ body::-webkit-scrollbar-thumb {
         }
 
         & .contact-info {
+            cursor: pointer;
+
             & .time {
 
                 top: 10px;
                 right: 10px;
                 color: var(--boolzap-text-gray);
             }
+
+
+        }
+
+        &:hover .contact-image>img {
+            filter: grayscale(0);
         }
     }
 }
@@ -290,6 +321,7 @@ body::-webkit-scrollbar-thumb {
         margin: 5px auto;
         display: flex;
         flex-direction: column;
+        scroll-behavior: smooth;
 
         & .message {
             padding: 30px 10px;
@@ -310,6 +342,7 @@ body::-webkit-scrollbar-thumb {
             }
 
             /* dropdown */
+
             & .drowdown>a {
                 color: var(--boolzap-text-gray);
 
@@ -323,6 +356,7 @@ body::-webkit-scrollbar-thumb {
 
             & .drowdown>ul {
                 display: none;
+                border-radius: 3px;
                 width: 200px;
                 top: 20px;
                 right: 0;
@@ -334,6 +368,7 @@ body::-webkit-scrollbar-thumb {
                 & li {
                     padding: 15px 30px;
                     cursor: pointer;
+                    transition: 0.2s linear;
 
                     & a {
                         margin: auto;
@@ -405,39 +440,53 @@ body::-webkit-scrollbar-thumb {
 
             & i {
                 font-size: 25px;
+                transition: 0.2s linear;
             }
 
-            & i:hover {
-                transition: 0.5s;
-            }
+
         }
 
-        & .emonji>ul {
-            visibility: hidden;
-            top: -50px;
-            background-color: var(--boolzap-lighter);
-            width: 150px;
-            list-style: none;
-            flex-wrap: wrap;
-            padding: 5px;
 
-            & li {
-                width: calc((100% / 12) * 4);
+        & .dropdown_emonji {
+            display: none;
+            border-radius: 5px;
+
+            &>ul {
+
+                top: -108px;
+                background-color: var(--boolzap-lighter);
+                width: 150px;
+                list-style: none;
+                flex-wrap: wrap;
                 padding: 5px;
 
-                & :hover {
-                    background-color: var(--boolzap-light);
-                }
-            }
 
-            & a {
-                text-decoration: none;
-                font-size: 25px;
+                & li {
+                    width: calc((100% / 12) * 4);
+                    padding: 5px;
+
+
+
+                    & :hover {
+                        transition: 0.2s linear;
+                        background-color: var(--boolzap-light);
+                    }
+                }
+
+                & a {
+                    text-decoration: none;
+                    font-size: 25px;
+                }
             }
         }
 
-        & .emonji:hover ul {
-            visibility: visible;
+
+
+
+        & .emonji:hover .dropdown_emonji {
+            transition: 1s linear;
+            display: block;
+
         }
 
         & .emonji>a:hover {
@@ -476,11 +525,13 @@ body::-webkit-scrollbar-thumb {
     .notificasionsn,
     .search,
     .option-main-menu,
-    .contact-info {
+    .contact-info,
+    #add_contact_text {
         display: none;
     }
 
-    .contact-image {
+    .contact-image,
+    .add_image {
         margin: auto;
     }
 
@@ -524,4 +575,101 @@ body::-webkit-scrollbar-thumb {
 
 .visible-hidden {
     display: none;
+}
+
+.add_contact {
+    width: 100%;
+    padding: 10px;
+
+    border-bottom: 1px solid var(--boolzap-light);
+    justify-content: center;
+    transition: 0.2s linear;
+
+    #add_contact_text {
+        padding: 0.25rem 0.5rem;
+        border-radius: 5px;
+    }
+
+    &>* {
+        cursor: pointer;
+
+    }
+
+    &:hover {
+        background-color: var(--boolzap-light);
+
+
+    }
+
+    &:hover #add_contact_text {
+        background-color: white;
+    }
+
+}
+
+#new_contact {
+
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.611);
+
+
+    .container_create {
+        min-width: 300px;
+        width: 30%;
+        background-color: white;
+        opacity: 1;
+        padding: 20px;
+        border-radius: 5px;
+
+        .header_new_contact {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 10px;
+            color: var(--boolzap-secondary);
+
+            &>a {
+                font-size: 25px;
+                color: var(--boolzap-secondary);
+            }
+        }
+
+        .input_create {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 10px;
+            gap: 5px;
+
+            &>input {
+                border: none;
+                padding: 0.25rem 0.5rem;
+                outline-color: var(--boolzap-secondary);
+                border-radius: 3px;
+                line-height: 20px;
+                background-color: var(--boolzap-light);
+            }
+        }
+
+        .btn_create {
+            display: flex;
+            justify-content: center;
+
+            &>button {
+                padding: 0.5rem 0.75rem;
+                border-radius: 10px;
+                color: white;
+                background-color: var(--boolzap-secondary);
+                border: none;
+            }
+        }
+    }
+
 }

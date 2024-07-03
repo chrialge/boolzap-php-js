@@ -20,9 +20,38 @@
 
 <body>
     <div id="container">
+        <div id="new_contact" v-show="modalAddAccount">
+            <div class="container_create">
+                <div class="header_new_contact">
+                    <h1>Crea un contatto</h1>
+                    <a href="#" @click="modalAddAccount = !modalAddAccount">
+                        <i class="fa-solid fa-xmark"></i>
+                    </a>
+
+                </div>
+                <form action="" method="post">
+                    <div class="input_create">
+                        <label for="name">Nome</label>
+                        <input type="text" name="name" id="name">
+                    </div>
+                    <div class="input_create">
+                        <label for="lastname">Cognome</label>
+                        <input type="text" name="lastname" id="lastname">
+                    </div>
+
+                    <div class="btn_create">
+                        <button type="submit">
+                            crea contatto
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
 
         <!-- left-container -->
-        <div class="left">
+        <div class="left ">
             <div class="main-menu d-flex">
                 <div class="image-main-menu">
                     <img src="./assets/img/avatar_io.jpg" alt="">
@@ -48,10 +77,11 @@
                         <div class="btn-search">
                             <button><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
-                        <input type="search" placeholder="Cerca o inizia una nuova chat" v-model="searchContact" @keyup="contactsSearch()">
+                        <input type="search" placeholder="Cerca o inizia una nuova chat" v-model="searchContact" @keyup="contactsSearch()" @keydown="contactsSearch()">
                     </div>
                 </div>
             </div>
+
             <div class="contacts">
                 <ul>
                     <!-- contact -->
@@ -59,7 +89,7 @@
                         <div class="contact d-flex posi-rela">
                             <div class="contact-image">
                                 <span></span>
-                                <img :src="'./assets' + contact.avatar" alt="">
+                                <img id="account_img" :src="'./assets' + contact.avatar" alt="">
                             </div>
                             <div class="contact-info">
                                 <h4>{{contact.name}}</h4>
@@ -72,6 +102,19 @@
                     </li>
                     <!-- contact -->
 
+                    <!-- add contact -->
+                    <li v-show="addContact">
+                        <div class="contact add_contact d-flex posi-rela " @click="modalAddAccount = !modalAddAccount">
+                            <div class="add_image">
+                                <img src="assets/img/add-user.png" alt="" width="50px">
+                            </div>
+
+                            <div id="add_contact_text">
+                                <h3>Aggiungi contatto</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- add contact -->
                 </ul>
 
 
@@ -132,9 +175,12 @@
                 <div class="container-metodology-message d-flex">
                     <div class="emonji">
                         <a href="#"><i class="fa-regular fa-face-smile"></i></a>
-                        <ul class="posi-abso d-flex">
-                            <li v-for="(emonji, index) in emonjeis"><a href="#" @click="insertValue(index)">{{emonji}}</a></li>
-                        </ul>
+                        <div class="dropdown_emonji">
+                            <ul class="posi-abso d-flex">
+                                <li v-for="(emonji, index) in emonjeis"><a href="#" @click="insertValue(index)">{{emonji}}</a></li>
+                            </ul>
+                        </div>
+
                     </div>
                     <div class="write-message grow-1">
                         <input type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="addMessage(contactNumber)">

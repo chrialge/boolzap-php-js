@@ -7,3 +7,5 @@ echo $contacts;
 
 // header('Content-type: application/json');
 // echo $json_string;
+
+// $newcontact = 
