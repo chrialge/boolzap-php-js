@@ -11,9 +11,9 @@ createApp({
 
             contactJson: [],
 
-
-
-
+            // dati del nuovo contatto
+            accountName: '',
+            accountImage: '',
             //costante per il valore di time per decidere quando stoppare l'intervallo
             time: 0,
 
@@ -42,6 +42,19 @@ createApp({
         };
     },
     methods: {
+
+        callApi() {
+            axios.get(this.url)
+                .then((result) => {
+                    console.log(result);
+                    this.contacts = result.data
+
+                }).catch((err) => {
+                    console.error(err.message);
+                })
+        },
+
+
         /**
          * funzione che prende al click l'index
          * @param {number} contactId l'index del contatto selezionato
@@ -153,33 +166,36 @@ createApp({
             //CONSOLE.LOG PER LEGGERE IL VALORE DEL INPUT
             console.log(this.searchContact);
             // se la lunghezza della parola maggiore di 1
-            if (this.searchContact.length > 1) {
-                // itero tra i contatti  che assomiglia al valore dell'input
-                for (const key in this.contacts) {
-                    // costante per prendere i nomi dei contatti
-                    const nameContant = this.contacts[key].name.toLowerCase();
+            if (this.searchContact) {
+                if (this.searchContact.length > 1) {
+                    // itero tra i contatti  che assomiglia al valore dell'input
+                    for (const key in this.contacts) {
+                        // costante per prendere i nomi dei contatti
+                        const nameContant = this.contacts[key].name.toLowerCase();
 
-                    //costasnte che cerca se i nomi dei contanti assomiglia all'input e dra valore true e false
-                    const visible = nameContant.includes(
-                        this.searchContact.toLowerCase()
-                    );
-                    if (!nameContant.includes(
-                        this.searchContact.toLowerCase())) {
-                        this.addContact = true;
+                        //costasnte che cerca se i nomi dei contanti assomiglia all'input e dra valore true e false
+                        const visible = nameContant.includes(
+                            this.searchContact.toLowerCase()
+                        );
+                        if (!nameContant.includes(
+                            this.searchContact.toLowerCase())) {
+                            this.addContact = true;
+                        }
+
+
+
+                        //cambiare il valore di visible in base al valore della costante precedente
+                        this.contacts[key].visible = visible;
                     }
-
-
-
-                    //cambiare il valore di visible in base al valore della costante precedente
-                    this.contacts[key].visible = visible;
-                }
-            } else {
-                this.addContact = false;
-                //altrimenti se la lunghezza della parola e di uno trasforma tutti i valori visible in true
-                for (const key in this.contacts) {
-                    this.contacts[key].visible = true;
+                } else {
+                    this.addContact = false;
+                    //altrimenti se la lunghezza della parola e di uno trasforma tutti i valori visible in true
+                    for (const key in this.contacts) {
+                        this.contacts[key].visible = true;
+                    }
                 }
             }
+
         },
 
         /**
@@ -254,22 +270,34 @@ createApp({
          */
         insertValue(index) {
             // prende l'emonji selezionata e la inserisce nel input di messaggistica cioe nel v-modelcon la proprieta newMessage
-            this.newMessage = this.newMessage + this.emonjeis[index]
+            this.newMessage = this.newMessage + this.emonjeis[index];
         },
 
+        addNewAccount() {
+
+            const data = {
+                name: this.accountName,
+                avatar: '/img/icon-default.jpg',
+                message: []
+            }
+            axios.post(this.url, data, { headers: { 'Content-type': 'multipart/form-data' } })
+                .then((resp) => {
+                    this.searchContact = "";
+                    this.modalAddAccount = false;
+                    this.addContact = false;
+                    this.callApi();
+
+                    console.log(resp);
+                }).catch(err => {
+                    console.error(err.message);
+                })
+        }
 
     },
     mounted() {
         console.log(this.modalCreate)
 
-        axios.get(this.url)
-            .then((result) => {
-                console.log(result);
-                this.contacts = result.data
-
-            }).catch((err) => {
-                console.error(err.message);
-            })
+        this.callApi();
 
 
     },

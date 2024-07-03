@@ -1,5 +1,10 @@
 <?php
 
+// $newAccount['name'] = $_POST['name'];
+// $newAccount['avatar'] = '/img/icon-default.jpg';
+// $newAccount['visible'] = true;
+// $newAccount['messages'] = [];
+// var_dump($newAccount);
 
 
 ?>
@@ -20,6 +25,8 @@
 
 <body>
     <div id="container">
+
+        <!-- modal for create new account -->
         <div id="new_contact" v-show="modalAddAccount">
             <div class="container_create">
                 <div class="header_new_contact">
@@ -29,14 +36,19 @@
                     </a>
 
                 </div>
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data" @submit.prevent="addNewAccount()">
                     <div class="input_create">
                         <label for="name">Nome</label>
-                        <input type="text" name="name" id="name">
+                        <input type="text" name="name" id="name" v-model="accountName">
                     </div>
-                    <div class="input_create">
-                        <label for="lastname">Cognome</label>
-                        <input type="text" name="lastname" id="lastname">
+
+
+                    <div class="container_input_file">
+                        <label for="image" class="label_file">Scegli il file
+                            <i class="fa-solid fa-download"></i>
+                        </label>
+                        <input type="file" name="image" id="image" v-model="accountImage" />
+
                     </div>
 
                     <div class="btn_create">
@@ -49,6 +61,8 @@
             </div>
 
         </div>
+        <!-- modal for create new account -->
+
 
         <!-- left-container -->
         <div class="left ">
@@ -97,6 +111,9 @@
                                 <div class="time">
                                     <span>{{ dataMessage(contact.messages.length - 1, index) }}</span>
                                 </div>
+                            </div>
+                            <div id="delete_contact">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
                             </div>
                         </div>
                     </li>
