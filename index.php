@@ -19,12 +19,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Boolzap</title>
 </head>
 
 <body>
     <div id="container">
+        <div class="container_loader" v-show="loading">
+            <div class="loader"></div>
+        </div>
+
+
 
         <!-- modal for create new account -->
         <div id="new_contact" v-show="modalAddAccount">
@@ -76,7 +82,7 @@
                     <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
                 </div>
             </div>
-            <div class="notificasionsn d-flex">
+            <div id="notifications" class=" d-flex">
                 <div class="symbol-no-notification">
                     <a href="#"><i class="fa-solid fa-bell-slash"></i></a>
                 </div>
@@ -97,7 +103,7 @@
             </div>
 
             <div class="contacts">
-                <ul>
+                <ul class="list-unstyled">
                     <!-- contact -->
                     <li v-for="(contact, index) in contacts" @click="conversation(index)" :class="{'visible-hidden': contact.visible == false}">
                         <div class="contact d-flex posi-rela">
@@ -105,15 +111,50 @@
                                 <span></span>
                                 <img id="account_img" :src="'./assets' + contact.avatar" alt="">
                             </div>
-                            <div class="contact-info">
+                            <div class="contact-info w-100">
                                 <h4>{{contact.name}}</h4>
                                 <span>{{dateMessage((contact.messages.length -1), index)}}</span>
                                 <div class="time">
                                     <span>{{ dataMessage(contact.messages.length - 1, index) }}</span>
                                 </div>
                             </div>
-                            <div id="delete_contact">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            <div id="delete_contact" class="flex-shrink-1">
+
+
+
+                                <!-- Modal trigger button -->
+                                <button type="button" class="p-0 border-0 fs-5 bg-white delete_modal" data-bs-toggle="modal" :data-bs-target="`#modalId-${index}`">
+                                    <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                                </button>
+
+                                <!-- Modal Body -->
+                                <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                                <div class="modal fade" :id="`modalId-${index}`" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" :aria-labelledby="'modalTitleId-'+ index" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" :id="'modalTitleId-'+ index">
+                                                    Eliminazione del account
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Sei sicuro di voler eliminare {{contact.name}} tra i tuoi contatti?
+                                            </div>
+                                            <div class="modal-footer d-flex justify-content-center">
+
+                                                <form action="" method="post" @submit.prevent="deleteAccount(index)">
+                                                    <button type="submit" data-bs-dismiss="modal" class="btn btn-danger">
+                                                        Elimina
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
                             </div>
                         </div>
                     </li>
@@ -211,13 +252,15 @@
             </footer>
             <!-- /#site-footer -->
         </div>
+        <!-- end of container -->
 
-
-
-
-
+        <!-- cdn bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+        <!-- cdn axios -->
         <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js' integrity='sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
+        <!-- cdn vue -->
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <!-- js -->
         <script src="./assets/js/script.js"></script>
 </body>
 

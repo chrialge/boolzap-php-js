@@ -138,7 +138,7 @@ body::-webkit-scrollbar-thumb,
 
 /* region notificasion-left */
 
-.notificasionsn {
+#notifications {
     background-color: var(--boolzap-notification);
     padding: 15px;
     gap: 1rem;
@@ -215,7 +215,7 @@ body::-webkit-scrollbar-thumb,
 
 .contacts {
     overflow-y: auto;
-    height: calc(100% - 206px);
+    height: calc(100% - 239px);
     scroll-behavior: smooth;
 
     & .contact {
@@ -251,6 +251,8 @@ body::-webkit-scrollbar-thumb,
 
 
         }
+
+
 
 
         &:hover .contact-image>img {
@@ -523,12 +525,12 @@ body::-webkit-scrollbar-thumb,
 /* media query max-width 991px */
 @media screen and (max-width: 991px) {
 
-    .notificasionsn,
+    #notifications,
     .search,
     .option-main-menu,
     .contact-info,
     #add_contact_text {
-        display: none;
+        display: none !important;
     }
 
     .contact-image,
@@ -693,13 +695,70 @@ body::-webkit-scrollbar-thumb,
 }
 
 
+/* HTML: <div class="loader"></div> */
+.container_loader {
+    height: 100%;
+    background-color: #dbdbd4d6;
+    width: 100%;
+    z-index: 13;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-#delete_contact>i {
-    font-size: 20px;
-    cursor: pointer;
-    transition: 0.2s linear;
+    /* HTML: <div class="loader"></div> */
 
-    &:hover {
-        color: red;
+}
+
+
+.loader {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: grid;
+    background: #fff;
+    filter: blur(4px) contrast(10) hue-rotate(240deg);
+    mix-blend-mode: darken;
+}
+
+.loader:before {
+    content: "";
+    grid-area: 1/1;
+    margin: 30px 0;
+    border-radius: 100px;
+    background: #ff00ee;
+}
+
+.loader:after {
+    content: "";
+    grid-area: 1/1;
+    height: 35px;
+    width: 35px;
+    margin: auto;
+    border-radius: 50%;
+    background: #ff00ee;
+    animation: l5 2s infinite linear;
+}
+
+@keyframes l5 {
+    0% {
+        transform: translate(30px)
+    }
+
+    25% {
+        transform: translate(0)
+    }
+
+    50% {
+        transform: translate(-30px)
+    }
+
+    75% {
+        transform: translate(0)
+    }
+
+    100% {
+        transform: translate(30px)
     }
 }

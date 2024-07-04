@@ -5,6 +5,7 @@ createApp({
         return {
             addContact: false,
             modalAddAccount: false,
+            loading: false,
             url: 'api.php',
             //valore del input search
             searchContact: "",
@@ -43,12 +44,14 @@ createApp({
     },
     methods: {
 
+
         callApi() {
+            this.loading = true;
             axios.get(this.url)
                 .then((result) => {
                     console.log(result);
                     this.contacts = result.data
-
+                    this.loading = false
                 }).catch((err) => {
                     console.error(err.message);
                 })
@@ -274,6 +277,7 @@ createApp({
         },
 
         addNewAccount() {
+            this.loading = true;
 
             const data = {
                 name: this.accountName,
@@ -288,6 +292,23 @@ createApp({
                     this.callApi();
 
                     console.log(resp);
+                }).catch(err => {
+                    console.error(err.message);
+                })
+        },
+        deleteAccount(index) {
+            this.loading = true;
+            console.log(index)
+            const data = {
+                deleteAccount: index
+            }
+            const url = 'post/delete.php'
+            axios.post(url, data, { headers: { 'Content-type': 'multipart/form-data' } })
+                .then((resp) => {
+
+
+                    console.log(resp);
+                    this.callApi();
                 }).catch(err => {
                     console.error(err.message);
                 })
