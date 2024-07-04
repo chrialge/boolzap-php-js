@@ -26,6 +26,8 @@
 
 <body>
     <div id="container">
+
+        <!-- loading for page -->
         <div class="container_loader" v-show="loading">
             <div class="loader"></div>
         </div>
@@ -70,9 +72,9 @@
         <!-- modal for create new account -->
 
 
-        <!-- left-container -->
 
-        <div class="left_drowping" v-show="drowping">
+        <!--left container for tablet and mobile  -->
+        <div class="left_drowping" v-show="drowpingActive">
             <div class="my_account">
                 <div class="image_my_account">
                     <img src="./assets/img/avatar_io.jpg" alt="">
@@ -80,7 +82,7 @@
                 <div class="option_my_account">
                     <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i>
                     </a>
-                    <a href="#" class="close_drowping" @click="drowping = !drowping">
+                    <a href="#" class="close_drowping" @click="drowpingActive = !drowpingActive">
                         <i class="fa-solid fa-xmark"></i>
                     </a>
                 </div>
@@ -171,8 +173,10 @@
             </div>
 
         </div>
+        <!--left container for tablet and mobile  -->
 
 
+        <!-- left-container for sreen with min-width=990px -->
         <div class="left" id="display_left">
             <div class="main-menu d-flex">
                 <div class="image-main-menu">
@@ -288,7 +292,7 @@
             <header id="site-header">
                 <div class="container-header d-flex">
                     <div class="left-header d-flex grow-1">
-                        <div class="image-header">
+                        <div class="image-header" @click="drowping()">
                             <img :src="'./assets' + contactActive['avatar']" alt="">
                         </div>
                         <div class="info header">

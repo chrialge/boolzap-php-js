@@ -3,7 +3,7 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
-            drowping: true,
+            drowpingActive: false,
             addContact: false,
             modalAddAccount: false,
             loading: false,
@@ -277,6 +277,9 @@ createApp({
             this.newMessage = this.newMessage + this.emonjeis[index];
         },
 
+        /**
+         * funzione che manda i dati inseriti dell'utente e li manda ad api.php
+         */
         addNewAccount() {
             this.loading = true;
 
@@ -297,6 +300,10 @@ createApp({
                     console.error(err.message);
                 })
         },
+        /**
+         * funzione che cancella l'account 
+         * @param {number} index verra mandato il l'index del account da cancellare
+         */
         deleteAccount(index) {
             this.loading = true;
             console.log(index)
@@ -313,11 +320,22 @@ createApp({
                 }).catch(err => {
                     console.error(err.message);
                 })
+        },
+
+        /**
+         * funzione che controlla se lo schermo utilizzato e uguale e minore di 991
+         * in questo caso fa comparire il drowping
+         */
+        drowping() {
+            console.log(innerWidth)
+            if (innerWidth <= 991) {
+                this.drowpingActive = true
+            }
         }
 
     },
     mounted() {
-        console.log(innerWidth + "x" + innerHeight)	// 1280x386
+
 
 
         this.callApi();
