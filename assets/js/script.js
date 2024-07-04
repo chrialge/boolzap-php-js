@@ -3,6 +3,7 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
+            drowping: true,
             addContact: false,
             modalAddAccount: false,
             loading: false,
@@ -316,7 +317,8 @@ createApp({
 
     },
     mounted() {
-        console.log(this.modalCreate)
+        console.log(innerWidth + "x" + innerHeight)	// 1280x386
+
 
         this.callApi();
 

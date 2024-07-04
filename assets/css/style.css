@@ -100,7 +100,7 @@ body::-webkit-scrollbar-thumb,
 /* region left-container */
 
 .left {
-    width: 500px;
+    width: 400px;
     height: 100%;
     background-color: var(--boolzap-lighter);
 
@@ -526,20 +526,16 @@ body::-webkit-scrollbar-thumb,
 @media screen and (max-width: 991px) {
 
     #notifications,
-    .search,
-    .option-main-menu,
-    .contact-info,
+    .text_disabled,
+    .left,
     #add_contact_text {
         display: none !important;
     }
 
+
     .contact-image,
     .add_image {
         margin: auto;
-    }
-
-    .left {
-        width: 90px;
     }
 
     #container {
@@ -562,12 +558,10 @@ body::-webkit-scrollbar-thumb,
 @media screen and (max-width: 540px) {
 
 
-    .left,
-    .vocal-message,
-    .emonji,
-    .right-header {
+    .left {
         display: none;
     }
+
 
     .write-message>input {
         border-radius: 0.25rem;
@@ -760,5 +754,65 @@ body::-webkit-scrollbar-thumb,
 
     100% {
         transform: translate(30px)
+    }
+}
+
+.left_drowping {
+    z-index: 16;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    background-color: var(--boolzap-lighter);
+
+
+    .my_account {
+        background-color: var(--boolzap-light);
+
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+
+        .image_my_account {
+            width: 50px;
+
+            &>img {
+                width: 100%;
+                border-radius: 50%;
+            }
+        }
+
+        .option_my_account {
+            display: flex;
+            gap: 20px;
+
+            &>a {
+                font-size: 30px;
+                color: var(--boolzap-text-gray);
+
+            }
+
+            .close_drowping {
+                color: black;
+            }
+        }
+    }
+
+    .search {
+        background-color: var(--boolzap-light);
+
+    }
+
+    .contacts {
+        height: calc(100% - 121px);
+
+        .contact {
+            border-bottom: 1px solid var(--boolzap-text-gray);
+
+        }
+
+
     }
 }

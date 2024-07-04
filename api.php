@@ -12,6 +12,7 @@ if (count($_POST) > 1) {
         'visibility' => true,
         'messages' => [],
     ];
+    addAccount($newcontact);
     // var_dump($contacts);
 }
 
@@ -22,7 +23,6 @@ function addAccount($newcontact)
     array_unshift($contacts, $newcontact);
     $contacts = json_encode($contacts);
     file_put_contents('contacts.json', $contacts);
-    echo 'ciao';
 };
 
 header('Content-type: application/json');

@@ -71,26 +71,21 @@
 
 
         <!-- left-container -->
-        <div class="left ">
-            <div class="main-menu d-flex">
-                <div class="image-main-menu">
+
+        <div class="left_drowping" v-show="drowping">
+            <div class="my_account">
+                <div class="image_my_account">
                     <img src="./assets/img/avatar_io.jpg" alt="">
                 </div>
-                <div class="option-main-menu">
-                    <a href="#"><i class="fa-solid fa-circle-notch"></i></a>
-                    <a href="#"><i class="fa-solid fa-message"></i></a>
-                    <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+                <div class="option_my_account">
+                    <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i>
+                    </a>
+                    <a href="#" class="close_drowping" @click="drowping = !drowping">
+                        <i class="fa-solid fa-xmark"></i>
+                    </a>
                 </div>
             </div>
-            <div id="notifications" class=" d-flex">
-                <div class="symbol-no-notification">
-                    <a href="#"><i class="fa-solid fa-bell-slash"></i></a>
-                </div>
-                <div class="info-notification">
-                    <h4>Ricevi notifiche di nuovi messagi</h4>
-                    <a href="#">Attiva notifiche destktop</a>
-                </div>
-            </div>
+
             <div class="search">
                 <div class="container-search">
                     <div class="text-search d-flex" action="search" method="get">
@@ -112,10 +107,116 @@
                                 <img id="account_img" :src="'./assets' + contact.avatar" alt="">
                             </div>
                             <div class="contact-info w-100">
-                                <h4>{{contact.name}}</h4>
-                                <span>{{dateMessage((contact.messages.length -1), index)}}</span>
+                                <h5>{{contact.name}}</h5>
+
+                            </div>
+                            <div id="delete_contact" class="flex-shrink-1">
+
+
+
+                                <!-- Modal trigger button -->
+                                <button type="button" class="p-0 border-0 fs-5 bg-white delete_modal" data-bs-toggle="modal" :data-bs-target="`#modalId-drop-${index}`">
+                                    <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                                </button>
+
+                                <!-- Modal Body -->
+                                <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                                <div class="modal fade" :id="`modalId-drop-${index}`" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" :aria-labelledby="'modalTitleId-drop-'+ index" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" :id="'modalTitleId-drop-'+ index">
+                                                    Eliminazione del account
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Sei sicuro di voler eliminare {{contact.name}} tra i tuoi contatti?
+                                            </div>
+                                            <div class="modal-footer d-flex justify-content-center">
+
+                                                <form action="" method="post" @submit.prevent="deleteAccount(index)">
+                                                    <button type="submit" data-bs-dismiss="modal" class="btn btn-danger">
+                                                        Elimina
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </li>
+                    <!-- contact -->
+
+                    <!-- add contact -->
+                    <li v-show="addContact">
+                        <div class="contact add_contact d-flex posi-rela " @click="modalAddAccount = !modalAddAccount">
+                            <div class="add_image">
+                                <img src="assets/img/add-user.png" alt="" width="50px">
+                            </div>
+
+                            <div id="add_contact_text">
+                                <h3>Aggiungi contatto</h3>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- add contact -->
+                </ul>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="left" id="display_left">
+            <div class="main-menu d-flex">
+                <div class="image-main-menu">
+                    <img src="./assets/img/avatar_io.jpg" alt="">
+                </div>
+                <div class="option-main-menu">
+
+                    <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+                </div>
+            </div>
+            <div id="notifications" class=" d-flex">
+                <div class="symbol-no-notification">
+                    <a href="#"><i class="fa-solid fa-bell-slash"></i></a>
+                </div>
+                <div class="info-notification">
+                    <h4>Ricevi notifiche di nuovi messagi</h4>
+                    <a href="#">Attiva notifiche destktop</a>
+                </div>
+            </div>
+            <div class="search">
+                <div class="container-search">
+                    <div class="text-search d-flex" action="search" method="get">
+                        <div class="btn-search">
+                            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                        <input class="input_disabled" type="search" placeholder="Cerca o inizia una nuova chat" v-model="searchContact" @keyup="contactsSearch()" @keydown="contactsSearch()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="contacts">
+                <ul class="list-unstyled">
+                    <!-- contact -->
+                    <li v-for="(contact, index) in contacts" @click="conversation(index)" :class="{'visible-hidden': contact.visible == false}">
+                        <div class="contact d-flex posi-rela">
+                            <div class="contact-image">
+                                <span></span>
+                                <img id="account_img" :src="'./assets' + contact.avatar" alt="">
+                            </div>
+                            <div class="contact-info w-100">
+                                <h5>{{contact.name}}</h5>
+                                <span class="text_disabled">{{dateMessage((contact.messages.length -1), index)}}</span>
                                 <div class="time">
-                                    <span>{{ dataMessage(contact.messages.length - 1, index) }}</span>
+                                    <span class="text_disabled">{{ dataMessage(contact.messages.length - 1, index) }}</span>
                                 </div>
                             </div>
                             <div id="delete_contact" class="flex-shrink-1">
