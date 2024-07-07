@@ -64,6 +64,7 @@ createApp({
          * @param {number} contactId l'index del contatto selezionato
          */
         conversation(contactId) {
+            this.drowpingActive = false;
             //prende l'indice del contatto selezionato che mi servira per selezionare la conversazione che vogliamo
             this.contactNumber = contactId;
 
@@ -98,26 +99,60 @@ createApp({
         generateMessage(message, index, status) {
 
             // variabili per ottenere la data odierna
-            const data = new Date();
+            const newDate = new Date();
             let gg, mm, aaaa;//dichiarazione di tre variabili
-            gg = data.getDate() + "/";//prende giorno
-            mm = data.getMonth() + 1 + "/";//prende mese
-            aaaa = data.getFullYear();// prende l'anno
+            gg = newDate.getDate() + "/";//prende giorno
+            mm = newDate.getMonth() + 1 + "/";//prende mese
+            aaaa = newDate.getFullYear();// prende l'anno
             const date = gg + mm + aaaa;// constante che unisce i tre valori in un unica stringa
 
             // variabili per ottenere l orario odierna
             let Hh, Mm, Ss;// dichiarazione delle tre variabili
-            Hh = data.getHours() + ":"; //prende l'ora
-            Mm = data.getMinutes() + ":";//prende i minuti
-            Ss = data.getSeconds();// prende i secondi
+            Hh = newDate.getHours() + ":";
+            if (Hh.length = 1) {
+                Hh = '0' + Hh
+            } //prende l'ora
+            Mm = newDate.getMinutes() + ":";
+            if (Mm.length = 1) {
+                Mm = '0' + Mm
+            }
+            Ss = newDate.getSeconds();
+            if (Ss.length = 1) {
+                Ss = '0' + Ss
+            }
             const time = Hh + Mm + Ss;//constante che unisce in un uniica stringa
 
+
+            const newMessage = {
+                date: date + " " + time,
+                message: message,
+                status: status,
+            }
+
             //inserisce nel contatto specifico nell'array message il messaggio generato
-            this.contacts[index].messages.push({
-                date: date + " " + time,//inserisce la data e l'ora 
-                message: message,//il messaggio
-                status: status,// lo status che in base hai casi puo essere 'sent' o 'receveid'
-            });
+            this.contacts[index].messages.push(newMessage);
+
+            const data = {
+                message: newMessage,
+                index: index
+
+            }
+            const url = 'messages/add-message.php';
+
+            console.log(url, data)
+
+            axios.post(url, data, { headers: { 'Content-type': 'multipart/form-data' } }).then(resp => {
+                console.log(resp)
+            }).catch(err => {
+                console.error(err);
+            })
+
+
+
+
+
+
+
             console.log(this.contacts[index].messages);
         },
 
@@ -216,7 +251,7 @@ createApp({
 
             // prende la proprieta data di un messaggio e contatto specifico
             let timeMessage = this.contacts[contactid].messages[index].date;
-
+            console.log(timeMessage);
             //divide l'elemento in diversi elementi in base al separatore " "
             timeMessage = timeMessage.split(" ");
 
@@ -241,6 +276,20 @@ createApp({
 
             // rimuove il messaggio con l'indice del contatto e l'indice del messaggio
             this.contacts[contactid].messages.splice(index, 1)
+            const data = {
+                accountid: contactid,
+                messageid: index
+
+            }
+            const url = 'messages/delete-message.php';
+
+            console.log(url, data)
+
+            axios.post(url, data, { headers: { 'Content-type': 'multipart/form-data' } }).then(resp => {
+                console.log(resp)
+            }).catch(err => {
+                console.error(err);
+            })
 
         },
 

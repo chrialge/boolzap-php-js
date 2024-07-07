@@ -317,11 +317,12 @@
                         <p>
                             {{messageData.message}}
                         </p>
-                        <div class="drowdown">
+                        <div id="drowdown_message">
                             <a href="#"><i class="fa-solid fa-chevron-down"></i></a>
                             <ul class="option-message posi-abso">
                                 <li><a href="#">Info messaggio</a></li>
-                                <li><a href="#" @click="removeMessage(index,contactNumber)">Cancella messaggio</a></li>
+                                <li><a href="#" @click="removeMessage(index,contactNumber)">
+                                        Cancella messaggio</a></li>
                             </ul>
                         </div>
                         <div class="time-message posi-abso">

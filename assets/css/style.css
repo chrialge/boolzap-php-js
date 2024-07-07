@@ -328,6 +328,7 @@ body::-webkit-scrollbar-thumb,
         scroll-behavior: smooth;
 
         & .message {
+            position: relative;
             padding: 30px 10px;
             border-radius: 1rem;
             max-width: 400px;
@@ -347,32 +348,57 @@ body::-webkit-scrollbar-thumb,
 
             /* dropdown */
 
-            & .drowdown>a {
-                color: var(--boolzap-text-gray);
+            & #drowdown_message {
+                position: absolute;
+                top: 5px;
+                right: 10px;
+                text-decoration: none;
 
-                >i {
-                    position: absolute;
-                    top: 5px;
-                    right: 10px;
+                &>a {
+                    color: var(--boolzap-text-gray);
+                    text-decoration: none;
                 }
+
+                &>ul {
+                    border-radius: 3px;
+                    width: 200px;
+                    padding: 0;
+                    top: 17px;
+                    right: 0px;
+                    display: none;
+                    background-color: var(--boolzap-lighter);
+                    box-shadow: 1px 1px 10px gray;
+                    z-index: 2;
+                    /* list-style: none; */
+
+                    &>li {
+                        list-style: none;
+                        padding: 15px 30px;
+                        cursor: pointer;
+                        transition: 0.2s linear;
+
+                        &>a {
+                            text-decoration: none;
+                            color: black;
+                        }
+                    }
+                }
+
 
             }
 
-            & .drowdown>ul {
+            /* & #drowdown_message>ul {
                 display: none;
-                border-radius: 3px;
-                width: 200px;
+
                 top: 20px;
                 right: 0;
                 background-color: var(--boolzap-lighter);
                 list-style: none;
-                z-index: 2;
-                box-shadow: 1px 1px 10px gray;
+                
+                
 
                 & li {
-                    padding: 15px 30px;
-                    cursor: pointer;
-                    transition: 0.2s linear;
+
 
                     & a {
                         margin: auto;
@@ -380,13 +406,13 @@ body::-webkit-scrollbar-thumb,
                         color: black;
                     }
                 }
-            }
+            } */
 
             /* enddropdown */
 
             /* hover dropdown */
 
-            & .drowdown:hover>.option-message {
+            & #drowdown_message:hover>.option-message {
                 display: block;
 
             }
