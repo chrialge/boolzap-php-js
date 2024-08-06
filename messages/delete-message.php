@@ -1,5 +1,8 @@
 <?php
 
+switch ($request) {
+    case $_POST["accountid"]:
+}
 
 function deleteMessage($account_id, $message_id)
 {
@@ -12,6 +15,7 @@ function deleteMessage($account_id, $message_id)
     $contacts = json_encode($contacts);
     // file_put_contents('../contacts.json', $contacts);
     header('Content-type: application/json');
+    file_put_contents('../contacts.json', $contacts);
     echo ($contacts);
 };
 

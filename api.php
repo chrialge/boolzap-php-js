@@ -1,9 +1,14 @@
 <?php
 
+
+// var_dump($_SERVER['REQUEST_METHOD']);
 $newcontact = [];
 $contacts = file_get_contents('contacts.json', true);
 
 if (count($_POST) > 1) {
+    echo ($_SERVER['REQUEST_METHOD']);
+    echo ($_SERVER['REQUEST_URI']);
+
     $name = $_POST['name'];
     $avatar = $_POST['avatar'];
     $newcontact = [

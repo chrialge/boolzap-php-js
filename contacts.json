@@ -1,55 +1,75 @@
 [
     {
-        "name": "francesco",
-        "avatar": "\/img\/icon-default.jpg",
+        "name": "stefano",
+        "avatar": "/img/icon-default.jpg",
         "visibility": true,
         "messages": [
             {
-                "date": "5\/7\/2024 13:35:8",
+                "date": "12/7/2024 012:011:00",
+                "message": "ciao",
+                "status": "sent"
+            },
+            {
+                "date": "12/7/2024 012:011:01",
+                "message": "ok",
+                "status": "received"
+            },
+            {
+                "date": "6/8/2024 09:040:053",
+                "message": "come stai?",
+                "status": "sent"
+            },
+            {
+                "date": "6/8/2024 09:040:054",
+                "message": "ok",
+                "status": "received"
+            }
+        ]
+    },
+    {
+        "name": "Christian",
+        "avatar": "/img/icon-default.jpg",
+        "visibility": true,
+        "messages": [
+            {
+                "date": "5/7/2024 17:9:53",
+                "message": "bella",
+                "status": "sent"
+            },
+            {
+                "date": "5/7/2024 17:9:54",
+                "message": "ok",
+                "status": "received"
+            },
+            {
+                "date": "5/7/2024 17:15:43",
+                "message": "ok",
+                "status": "received"
+            },
+            {
+                "date": "12/7/2024 012:07:037",
                 "message": "ciao",
                 "status": "sent"
             }
         ]
     },
     {
-        "name": "Christian",
-        "avatar": "\/img\/icon-default.jpg",
-        "visibility": true,
-        "messages": [
-               {
-                "date": "5\/7\/2024 17:9:53",
-                "message": "bella",
-                "status": "sent"
-            },
-             {
-                "date": "5\/7\/2024 17:9:54",
-                "message": "ok",
-                "status": "received"
-            },
-             {
-                "date": "5\/7\/2024 17:15:43",
-                "message": "ok",
-                "status": "received"
-            }
-        ]
-    },
-    {
         "name": "Michele",
-        "avatar": "\/img\/avatar_1.jpg",
+        "avatar": "/img/avatar_1.jpg",
         "visible": true,
         "messages": [
             {
-                "date": "10\/01\/2020 15:30:55",
+                "date": "10/01/2020 15:30:55",
                 "message": "Hai portato a spasso il cane?",
                 "status": "sent"
             },
             {
-                "date": "11\/01\/2020 15:50:00",
+                "date": "11/01/2020 15:50:00",
                 "message": "Ricordati di stendere i panni",
                 "status": "sent"
             },
             {
-                "date": "12\/01\/2020 16:15:22",
+                "date": "12/01/2020 16:15:22",
                 "message": "Tutto fatto!",
                 "status": "received"
             }
@@ -57,21 +77,21 @@
     },
     {
         "name": "Fabio",
-        "avatar": "\/img\/avatar_2.jpg",
+        "avatar": "/img/avatar_2.jpg",
         "visible": true,
         "messages": [
             {
-                "date": "20\/03\/2020 16:30:00",
+                "date": "20/03/2020 16:30:00",
                 "message": "Ciao come stai?",
                 "status": "sent"
             },
             {
-                "date": "21\/03\/2020 16:30:55",
+                "date": "21/03/2020 16:30:55",
                 "message": "Bene grazie! Stasera ci vediamo?",
                 "status": "received"
             },
             {
-                "date": "22\/03\/2020 16:35:00",
+                "date": "22/03/2020 16:35:00",
                 "message": "Mi piacerebbe ma devo andare a fare la spesa.",
                 "status": "sent"
             }
@@ -79,21 +99,21 @@
     },
     {
         "name": "Samuele",
-        "avatar": "\/img\/avatar_3.jpg",
+        "avatar": "/img/avatar_3.jpg",
         "visible": true,
         "messages": [
             {
-                "date": "28\/03\/2020 10:10:40",
+                "date": "28/03/2020 10:10:40",
                 "message": "La Marianna va in campagna",
                 "status": "received"
             },
             {
-                "date": "29\/03\/2020 10:20:10",
+                "date": "29/03/2020 10:20:10",
                 "message": "Sicuro di non aver sbagliato chat?",
                 "status": "sent"
             },
             {
-                "date": "30\/03\/2020 16:15:22",
+                "date": "30/03/2020 16:15:22",
                 "message": "Ah scusa!",
                 "status": "received"
             }
@@ -101,16 +121,16 @@
     },
     {
         "name": "Alessandro",
-        "avatar": "\/img\/avatar_4.jpg",
+        "avatar": "/img/avatar_4.jpg",
         "visible": true,
         "messages": [
             {
-                "date": "10\/01\/2020 15:30:55",
+                "date": "10/01/2020 15:30:55",
                 "message": "Lo sai che ha aperto una nuova pizzeria?",
                 "status": "sent"
             },
             {
-                "date": "11\/01\/2020 15:50:00",
+                "date": "11/01/2020 15:50:00",
                 "message": "Si, ma preferirei andare al cinema",
                 "status": "received"
             }
@@ -118,16 +138,16 @@
     },
     {
         "name": "Alessandro",
-        "avatar": "\/img\/avatar_5.jpg",
+        "avatar": "/img/avatar_5.jpg",
         "visible": true,
         "messages": [
             {
-                "date": "10\/01\/2020 15:30:55",
+                "date": "10/01/2020 15:30:55",
                 "message": "Ricordati di chiamare la nonna",
                 "status": "sent"
             },
             {
-                "date": "11\/01\/2020 15:50:00",
+                "date": "11/01/2020 15:50:00",
                 "message": "Va bene, stasera la sento",
                 "status": "received"
             }
@@ -135,23 +155,28 @@
     },
     {
         "name": "Claudia",
-        "avatar": "\/img\/avatar_6.jpg",
+        "avatar": "/img/avatar_6.jpg",
         "visible": true,
         "messages": [
             {
-                "date": "10\/01\/2020 15:30:55",
+                "date": "10/01/2020 15:30:55",
                 "message": "Ciao Claudia, hai novit\u00e0?",
                 "status": "sent"
             },
             {
-                "date": "11\/01\/2020 15:50:00",
+                "date": "11/01/2020 15:50:00",
                 "message": "Non ancora",
                 "status": "received"
             },
             {
-                "date": "12\/01\/2020 15:51:00",
+                "date": "12/01/2020 15:51:00",
                 "message": "Nessuna nuova, buona nuova",
                 "status": "sent"
+            },
+            {
+                "date": "6/8/2024 09:041:051",
+                "message": "ok",
+                "status": "received"
             }
         ]
     }

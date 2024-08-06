@@ -251,7 +251,7 @@ createApp({
 
             // prende la proprieta data di un messaggio e contatto specifico
             let timeMessage = this.contacts[contactid].messages[index].date;
-            console.log(timeMessage);
+            // console.log(timeMessage);
             //divide l'elemento in diversi elementi in base al separatore " "
             timeMessage = timeMessage.split(" ");
 
