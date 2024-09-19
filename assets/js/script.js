@@ -381,6 +381,23 @@ createApp({
             if (innerWidth <= 991) {
                 this.drowpingActive = true
             }
+        },
+
+        /**
+         * funzione che se lo schermo e minore di 991 puo far scomparire la siderbar
+         */
+        closeSiderbar() {
+            console.log(innerWidth)
+            if (innerWidth <= 991) {
+                document.querySelector('.left').style.display = 'none'
+            }
+        },
+
+        openSiderbar() {
+            console.log(innerWidth)
+            if (innerWidth <= 991) {
+                document.querySelector('.left').style.display = 'block'
+            }
         }
 
     },

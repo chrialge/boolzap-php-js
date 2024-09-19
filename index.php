@@ -240,7 +240,7 @@
 
 
                                 <!-- Modal trigger button -->
-                                <button type="button" class="p-0 border-0 fs-5 bg-white delete_modal" data-bs-toggle="modal" :data-bs-target="`#modalId-${index}`" onclick="document.getElementById('.left').style.display = 'block'">
+                                <button type="button" class="p-0 border-0 fs-5 bg-white delete_modal" data-bs-toggle="modal" :data-bs-target="`#modalId-${index}`" @click="openSiderbar()">
                                     <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                                 </button>
 
@@ -253,7 +253,7 @@
                                                 <h5 class="modal-title" :id="'modalTitleId-'+ index">
                                                     Eliminazione del account
                                                 </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="document.querySelector('.left').style.display = 'none'"></button>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="closeSiderbar()"></button>
                                             </div>
                                             <div class="modal-body">
                                                 Sei sicuro di voler eliminare {{contact.name}} tra i tuoi contatti?
@@ -261,7 +261,7 @@
                                             <div class="modal-footer d-flex justify-content-center">
 
                                                 <form action="" method="post" @submit.prevent="deleteAccount(index)">
-                                                    <button type="submit" data-bs-dismiss="modal" class="btn btn-danger" onclick="document.querySelector('.left').style.display = 'none'">
+                                                    <button type="submit" data-bs-dismiss="modal" class="btn btn-danger" @click="closeSiderbar()">
                                                         Elimina
                                                     </button>
                                                 </form>
