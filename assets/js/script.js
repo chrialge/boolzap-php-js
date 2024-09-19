@@ -175,6 +175,7 @@ createApp({
          */
         stopTimeMessageRespond() {
             clearInterval(this.time);
+
         },
 
         /**

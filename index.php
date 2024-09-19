@@ -2,11 +2,6 @@
 
 // index.php
 
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -15,13 +10,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- start font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- end font -->
+
+    <!-- font-awesone -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- style bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- style css -->
     <link rel="stylesheet" href="./assets/css/style.css">
+
     <title>Boolzap</title>
+
+
+    <!-- cdn bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <!-- cdn axios -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js' integrity='sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
+
 </head>
 
 <body>
@@ -125,7 +137,7 @@
                                 <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
                                 <div class="modal fade" :id="`modalId-drop-${index}`" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" :aria-labelledby="'modalTitleId-drop-'+ index" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
-                                        <div class="modal-content">
+                                        <div class="modal-content d-block">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" :id="'modalTitleId-drop-'+ index">
                                                     Eliminazione del account
@@ -228,7 +240,7 @@
 
 
                                 <!-- Modal trigger button -->
-                                <button type="button" class="p-0 border-0 fs-5 bg-white delete_modal" data-bs-toggle="modal" :data-bs-target="`#modalId-${index}`">
+                                <button type="button" class="p-0 border-0 fs-5 bg-white delete_modal" data-bs-toggle="modal" :data-bs-target="`#modalId-${index}`" onclick="document.getElementById('.left').style.display = 'block'">
                                     <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                                 </button>
 
@@ -241,7 +253,7 @@
                                                 <h5 class="modal-title" :id="'modalTitleId-'+ index">
                                                     Eliminazione del account
                                                 </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="document.querySelector('.left').style.display = 'none'"></button>
                                             </div>
                                             <div class="modal-body">
                                                 Sei sicuro di voler eliminare {{contact.name}} tra i tuoi contatti?
@@ -249,7 +261,7 @@
                                             <div class="modal-footer d-flex justify-content-center">
 
                                                 <form action="" method="post" @submit.prevent="deleteAccount(index)">
-                                                    <button type="submit" data-bs-dismiss="modal" class="btn btn-danger">
+                                                    <button type="submit" data-bs-dismiss="modal" class="btn btn-danger" onclick="document.querySelector('.left').style.display = 'none'">
                                                         Elimina
                                                     </button>
                                                 </form>
@@ -360,10 +372,6 @@
         </div>
         <!-- end of container -->
 
-        <!-- cdn bootstrap -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-        <!-- cdn axios -->
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js' integrity='sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
         <!-- cdn vue -->
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 

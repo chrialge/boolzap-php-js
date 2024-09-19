@@ -559,9 +559,12 @@ body::-webkit-scrollbar-thumb,
 
     #notifications,
     .text_disabled,
-    .left,
     #add_contact_text {
         display: none !important;
+    }
+
+    .left {
+        display: none;
     }
 
 
@@ -593,6 +596,8 @@ body::-webkit-scrollbar-thumb,
     .left {
         display: none;
     }
+
+    .modal {}
 
 
     .write-message>input {

@@ -3,6 +3,7 @@
 
 // var_dump($_SERVER['REQUEST_METHOD']);
 $newcontact = [];
+$contacts = '';
 $contacts = file_get_contents('contacts.json', true);
 
 if (count($_POST) > 1) {
